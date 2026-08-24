@@ -1,0 +1,21 @@
+{
+  "estimator": "random_forest",
+  "feature_tier": "tier1_declaration",
+  "columns": [
+    "product_category",
+    "product_type",
+    "origin_country"
+  ],
+  "arm": "binary_serious",
+  "classes": [
+    "not_serious_or_no_risk",
+    "serious"
+  ],
+  "macro_f1": 0.686,
+  "macro_f1_ci": [
+    0.668,
+    0.705
+  ],
+  "seed": 42,
+  "trained_through": "2025-08-08"
+}

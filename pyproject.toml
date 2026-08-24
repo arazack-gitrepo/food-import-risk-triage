@@ -1,0 +1,17 @@
+[project]
+name = "food-import-risk-triage"
+version = "1.0.0"
+description = "RASFF import risk severity classification and inspection prioritisation"
+requires-python = ">=3.10"
+authors = [{name = "Abdul Razack", email = "arazackshaali@gmail.com"}]
+license = {text = "MIT"}
+
+[project.urls]
+Repository = "https://github.com/arazack-gitrepo/food-import-risk-triage"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 90
+target-version = "py310"

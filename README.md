@@ -100,4 +100,4 @@ The model is a random forest. LightGBM is optional and only used for
 comparison. the whole argument here is that a cheap portable model is good
 enough, so shipping a heavier one would undercut it.
 
-Commits appear under two GitHub accounts (arazack-gitrepo and primenutron71). Both are mine — work was done across two machines signed into different accounts.
+Commits appear under two GitHub accounts (arazack-gitrepo and primenutron71). Both are mine, i did work done across two machines signed into different accounts.

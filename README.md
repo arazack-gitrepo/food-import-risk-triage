@@ -8,29 +8,65 @@ System for Food and Feed: 15,331 notifications from 2023 onward.
 
 ## Running it
 
+You need Python 3.10 or newer, and git.
+
+**1. Get the code**
+
+```bash
+git clone https://github.com/arazack-gitrepo/food-import-risk-triage.git
+cd food-import-risk-triage
+```
+
+**2. Make an environment**
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+**3. Install**
+
 ```bash
 pip install -r requirements.txt
+```
+
+**4. Run it**
+
+```bash
 python run_experiment.py
 ```
 
-You need the data first. It isn't in this repo (see below). Download the RASFF
-Window export, filter to 2022-01-01 through 2025-12-31, and save it as
-`data/RASFF_window.csv`. Download from 2022 even though the model only trains
-on 2023 onward, because the 2022 rows are what show the labelling scheme
-changed.
+The data is already in the repo at `data/RASFF_window.csv`, so there's nothing
+to download. It runs 2022-01-01 through 2025-12-31. The model only trains on
+2023 onward, the 2022 rows are in there because they're what show the
+labelling scheme changed.
 
 That one command regenerates everything in `results/`. Takes about 10 to 15
-minutes on a normal laptop. `--quick` runs a shorter version if you just want
-to see it work.
+minutes on a normal laptop. Add `--quick` for a shorter, rougher run if you
+just want to see it work.
 
-To open the dashboard afterwards:
+When it's done, every table is in `results/SUMMARY.md`. The deployed model
+should score 0.686 macro F1 and the full record 0.839. If you get those two
+numbers, the run reproduced.
+
+**5. Open the dashboard**
 
 ```bash
 streamlit run app/main.py
 ```
 
 If that says streamlit isn't recognised, use `python -m streamlit run app/main.py`.
-The dashboard works straight after cloning, you don't need the data for it.
+The dashboard works straight after step 3, you don't need to run the pipeline
+first.
+
+### Options
+
+| flag | what it does |
+|---|---|
+| `--quick` | 200 bootstrap resamples instead of 1000, temporal split only |
+| `--csv PATH` | point at a different export |
+| `--seed N` | change the random seed, default 42 |
+| `--year-min N` | move the start of the analysis window |
 
 ## What I found
 
@@ -77,6 +113,7 @@ line in there and nowhere else in the project.
 
 ```
 run_experiment.py       runs everything
+data/                   the RASFF export
 src/rasff/              the pipeline
 app/                    the dashboard
 notebooks/              Colab version, imports the package
@@ -85,10 +122,10 @@ scripts/                one-off analyses
 
 ## Notes
 
-The data isn't included. It's the European Commission's, not mine, you can download
-it yourself from the RASFF Window portal. The one exception is the 2,300-row
-test window in `results/predictions/`, which is there so the dashboard runs on
-clone. That's European Union, 2022-2025
+The data in `data/` is the European Commission's, not mine. It's the RASFF
+Window export, European Union, 2022-2025, included here so the project runs on
+clone. The same goes for the 2,300-row test window in `results/predictions/`,
+which is what the dashboard reads before you've run anything.
 
 Nothing else in `results/` is committed apart from the trained model and its
 card. Everything in there is generated, and a stale number sitting in a repo
@@ -100,4 +137,5 @@ The model is a random forest. LightGBM is optional and only used for
 comparison. the whole argument here is that a cheap portable model is good
 enough, so shipping a heavier one would undercut it.
 
-Commits appear under two GitHub accounts (arazack-gitrepo and primenutron71). Both are mine, i did work done across two machines signed into different accounts.
+Commits appear under two GitHub accounts (arazack-gitrepo and primenutron71).
+Both are mine, i did work across two machines signed into different accounts.

@@ -85,7 +85,7 @@ scripts/                one-off analyses
 
 ## Notes
 
-The data isn't included. It's the European Commission's, not mine, so you can download
+The data isn't included. It's the European Commission's, not mine, you can download
 it yourself from the RASFF Window portal. The one exception is the 2,300-row
 test window in `results/predictions/`, which is there so the dashboard runs on
 clone. That's European Union, 2022-2025
@@ -99,3 +99,5 @@ Seed 42 everywhere, so runs are repeatable.
 The model is a random forest. LightGBM is optional and only used for
 comparison. the whole argument here is that a cheap portable model is good
 enough, so shipping a heavier one would undercut it.
+
+Commits appear under two GitHub accounts (arazack-gitrepo and primenutron71). Both are mine — work was done across two machines signed into different accounts.
